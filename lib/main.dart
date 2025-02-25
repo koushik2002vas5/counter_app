@@ -32,6 +32,15 @@ class AgeCounter with ChangeNotifier {
     if (age <= 50) return Colors.orange;
     return Colors.grey;
   }
+
+  String getMessage() {
+    if (age <= 12) return "You're a child! Welcome to childhood fun!";
+    if (age <= 19) return "Teenager time! Embrace the chaos of teenage years!";
+    if (age <= 30)
+      return "You're a young adult! Embrace the adventure of adulthood!";
+    if (age <= 50) return "You're an adult now! The prime of your life!";
+    return "Golden years! Golden memories!";
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -63,7 +72,12 @@ class MyHomePage extends StatelessWidget {
                 'I am ${ageCounter.age} years old',
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: 10),
+              Text(
+                ageCounter.getMessage(),
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              SizedBox(height: 20),
               ElevatedButton(
                 onPressed: ageCounter.increment,
                 child: const Text('Increment Age'),
