@@ -24,6 +24,14 @@ class AgeCounter with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  Color getBackgroundColor() {
+    if (age <= 12) return Colors.lightBlue;
+    if (age <= 19) return Colors.lightGreen;
+    if (age <= 30) return Colors.yellow;
+    if (age <= 50) return Colors.orange;
+    return Colors.grey;
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -45,6 +53,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<AgeCounter>(
       builder: (context, ageCounter, child) => Scaffold(
+        backgroundColor: ageCounter.getBackgroundColor(),
         appBar: AppBar(title: const Text('Age Counter')),
         body: Center(
           child: Column(
