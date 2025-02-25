@@ -25,6 +25,11 @@ class AgeCounter with ChangeNotifier {
     }
   }
 
+  void updateAge(double newAge) {
+    age = newAge.toInt();
+    notifyListeners();
+  }
+
   Color getBackgroundColor() {
     if (age <= 12) return Colors.lightBlue;
     if (age <= 19) return Colors.lightGreen;
@@ -76,6 +81,15 @@ class MyHomePage extends StatelessWidget {
               Text(
                 ageCounter.getMessage(),
                 style: Theme.of(context).textTheme.titleLarge,
+              ),
+              SizedBox(height: 20),
+              Slider(
+                value: ageCounter.age.toDouble(),
+                min: 0,
+                max: 99,
+                divisions: 99,
+                label: ageCounter.age.toString(),
+                onChanged: (value) => ageCounter.updateAge(value),
               ),
               SizedBox(height: 20),
               ElevatedButton(
